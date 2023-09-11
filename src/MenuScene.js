@@ -13,12 +13,7 @@ class MenuScene extends Phaser.Scene {
     menuTheme.play();
 
     // Display the menu setting
-    const settingsIcon = document.querySelector(".settings-btn");
     const soundIcon = document.querySelector(".sound-btn");
-
-    settingsIcon.addEventListener("click", function() {
-      console.log("Clcik sur settings")
-    });
 
     soundIcon.addEventListener("click", function() {
       if (menuTheme.isPlaying) {

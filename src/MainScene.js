@@ -70,6 +70,19 @@ class MainScene extends Phaser.Scene {
       "N'ayez pas peur de poser des questions et d'apprendre. Vous faites maintenant partie de l'histoire.",
     ];
 
+    // Display the menu setting
+    const soundIcon = document.querySelector(".sound-btn");
+
+    soundIcon.addEventListener("click", function() {
+      if (menuTheme.isPlaying) {
+        soundIcon.children[0].src = "assets/images/sound_icon_off.png";
+        menuTheme.pause();
+      } else {
+        soundIcon.children[0].src = "assets/images/sound_icon_on.png";
+        menuTheme.resume();
+      }
+    });
+
     const hitboxWidth = 30;
     const hitboxHeight = 10;
 
