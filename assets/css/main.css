@@ -28,19 +28,3 @@
 .hidden {
     display: none;
 }
-
-.settings-bar {
-    position: absolute;
-    bottom: 40;
-    right: 40;
-}
-
-.settings-bar .settings-btn .icon,
-.settings-bar .sound-btn .icon {
-    width: 40;
-    height: 40;
-}
-
-.settings-bar .sound-btn .icon {
-    filter: invert();
-}

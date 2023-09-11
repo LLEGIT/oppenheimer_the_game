@@ -53,10 +53,6 @@ class MainScene extends Phaser.Scene {
       this.gameTheme.play();
     }
 
-    this.soundIcon = document.querySelector(".sound-btn");
-
-    this.soundIcon.addEventListener("click", () => this.handleSound(this.gameTheme));
-
     const map = this.make.tilemap({ key: "map" });
     this.map = map;
     const tileset = map.addTilesetImage("pipoya-rpg", "pipoya-rpg");
@@ -389,16 +385,6 @@ class MainScene extends Phaser.Scene {
     allCharacters.forEach((character) => {
       character.update();
     });
-  }
-  
-  handleSound(theme) {
-    if (theme.isPlaying) {
-      this.soundIcon.children[0].src = "assets/images/sound_icon_off.png";
-      theme.pause();
-    } else {
-      this.soundIcon.children[0].src = "assets/images/sound_icon_on.png";
-      theme.resume();
-    }
   }
 }
 

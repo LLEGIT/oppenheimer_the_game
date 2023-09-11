@@ -12,19 +12,6 @@ class MenuScene extends Phaser.Scene {
     const menuTheme = this.sound.add("menu_theme", {loop: true});
     menuTheme.play();
 
-    // Display the menu setting
-    const soundIcon = document.querySelector(".sound-btn");
-
-    soundIcon.addEventListener("click", function() {
-      if (menuTheme.isPlaying) {
-        soundIcon.children[0].src = "assets/images/sound_icon_off.png";
-        menuTheme.pause();
-      } else {
-        soundIcon.children[0].src = "assets/images/sound_icon_on.png";
-        menuTheme.resume();
-      }
-    });
-
     const { width: canvasWidth, height: canvasHeight } = this.cameras.main;
 
     const background = this.add.image(0, 0, "background").setOrigin(0);

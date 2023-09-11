@@ -32,15 +32,16 @@ class HouseScene extends Phaser.Scene {
   }
 
   create() {
-    if (!this.houseTheme) {
-      const houseTheme = this.sound.add("house_theme", {
-        loop: true,
-        volume: 0.3,
-      });
-      houseTheme.play();
-      this.houseTheme = houseTheme;
-    } else {
+    const houseTheme = this.sound.add("house_theme", {
+      loop: true,
+      volume: 0.3,
+    });
+
+    if (this.houseTheme) {
       this.houseTheme.resume();
+    } else {
+      this.houseTheme = houseTheme;
+      this.houseTheme.play();
     }
 
     const map = this.make.tilemap({ key: `${this.houseName}Map` });
