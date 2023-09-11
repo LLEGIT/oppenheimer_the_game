@@ -60,15 +60,6 @@ class MainScene extends Phaser.Scene {
     map.createLayer("objects", tileset);
     map.createLayer("buildings", tileset2);
     const wallObjects = map.createFromObjects("collisions");
-    const oppenheimerDialogues = [
-      "Bienvenue à Los Alamos, jeune recrue. Nous sommes en train de réaliser quelque chose d'incroyable ici.",
-      "Le projet Manhattan vise à développer la première bombe atomique. La puissance de l'atome entre nos mains.",
-      "Nous avons rassemblé certaines des plus grandes intelligences scientifiques du monde pour ce projet.",
-      "Mais n'oublions pas les implications éthiques et morales de ce que nous créons ici.",
-      "Le célèbre physicien Robert Oppenheimer dirige cette opération. Il a une vision radicale pour l'avenir.",
-      "Soyez prudent lorsque vous parlez de nos travaux ici. La sécurité et le secret sont primordiaux.",
-      "N'ayez pas peur de poser des questions et d'apprendre. Vous faites maintenant partie de l'histoire.",
-    ];
 
     // Display the menu setting
     const soundIcon = document.querySelector(".sound-btn");
