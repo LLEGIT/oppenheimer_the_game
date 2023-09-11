@@ -53,6 +53,9 @@ class MainScene extends Phaser.Scene {
       this.gameTheme.play();
     }
 
+    const itemsList = document.querySelector(".items-list");
+    itemsList.classList.remove("hidden");
+
     const map = this.make.tilemap({ key: "map" });
     this.map = map;
     const tileset = map.addTilesetImage("pipoya-rpg", "pipoya-rpg");
@@ -385,6 +388,27 @@ class MainScene extends Phaser.Scene {
     allCharacters.forEach((character) => {
       character.update();
     });
+  }
+
+  handleItemsFound() {
+    const items = document.querySelectorAll(".items-list .item");
+
+    let i = 0;
+
+    items.map((item) => {
+      if (sessionStorage.getItem(item.id + "_item_found")) {
+        item.style.textDecoration = "line-through";
+        i++;
+      }
+    });
+
+    if (i === 8) {
+      endGame();
+    }
+  }
+
+  endGame() {
+    console.log("Jeu fini")
   }
 }
 
