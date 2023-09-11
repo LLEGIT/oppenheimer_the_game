@@ -41,16 +41,21 @@ class MainScene extends Phaser.Scene {
   }
 
   create() {
-    if (!this.gameTheme) {
-      const gameTheme = this.sound.add("game_theme", {
-        loop: true,
-        volume: 0.3,
-      });
-      gameTheme.play();
-      this.gameTheme = gameTheme;
-    } else {
+    const gameTheme = this.sound.add("game_theme", {
+      loop: true,
+      volume: 0.3,
+    });
+    
+    if (this.gameTheme) {
       this.gameTheme.resume();
+    } else {
+      this.gameTheme = gameTheme;
+      this.gameTheme.play();
     }
+
+    this.soundIcon = document.querySelector(".sound-btn");
+
+    this.soundIcon.addEventListener("click", () => this.handleSound(this.gameTheme));
 
     const map = this.make.tilemap({ key: "map" });
     this.map = map;
@@ -60,19 +65,6 @@ class MainScene extends Phaser.Scene {
     map.createLayer("objects", tileset);
     map.createLayer("buildings", tileset2);
     const wallObjects = map.createFromObjects("collisions");
-
-    // Display the menu setting
-    const soundIcon = document.querySelector(".sound-btn");
-
-    soundIcon.addEventListener("click", function() {
-      if (menuTheme.isPlaying) {
-        soundIcon.children[0].src = "assets/images/sound_icon_off.png";
-        menuTheme.pause();
-      } else {
-        soundIcon.children[0].src = "assets/images/sound_icon_on.png";
-        menuTheme.resume();
-      }
-    });
 
     const hitboxWidth = 30;
     const hitboxHeight = 10;
@@ -397,6 +389,16 @@ class MainScene extends Phaser.Scene {
     allCharacters.forEach((character) => {
       character.update();
     });
+  }
+  
+  handleSound(theme) {
+    if (theme.isPlaying) {
+      this.soundIcon.children[0].src = "assets/images/sound_icon_off.png";
+      theme.pause();
+    } else {
+      this.soundIcon.children[0].src = "assets/images/sound_icon_on.png";
+      theme.resume();
+    }
   }
 }
 
