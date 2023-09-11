@@ -1,3 +1,4 @@
+import EndScene from './EndScene.js';
 import HouseScene from './HouseScene.js';
 import MainScene from './MainScene.js';
 import MenuScene from './MenuScene.js';
@@ -6,7 +7,7 @@ const config = {
   type: Phaser.AUTO,
   width: 2400,
   height:1600,
-  scene: [MenuScene, MainScene, HouseScene],
+  scene: [MenuScene, MainScene, HouseScene, EndScene],
   parent: "game",
   fullscreenTarget: "game",
   physics: {

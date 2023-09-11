@@ -30,10 +30,12 @@
 }
 
 .items-list {
+    padding: 5px;
+    background-color: white;
     position: absolute;
     bottom: 20;
     right: 20;
-    display: flex;
+    display: none;
     flex-direction: column;
-    gap: 5;
+    font-weight: bold;
 }
