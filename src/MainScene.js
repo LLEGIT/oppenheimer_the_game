@@ -1,5 +1,6 @@
 import Npc from "./Npc.js";
 import { houseCoordinates } from "./houseCoordinates.js";
+
 class MainScene extends Phaser.Scene {
   constructor() {
     super({ key: "MainScene" });
@@ -399,7 +400,7 @@ class MainScene extends Phaser.Scene {
       this.character7,
       this.character8,
       this.character9,
-      this.character10
+      this.character10,
     ];
 
     allCharacters.forEach((character) => {
