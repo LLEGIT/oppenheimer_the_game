@@ -1,5 +1,6 @@
 import { houseCoordinates } from "./houseCoordinates.js";
 import { houseExitCoordinates } from "./houseExitCoordinates.js";
+import { showDialogue } from "./utils.js";
 
 const chestsDialogue = {
   house1: "Vous récuperez des câbles pour amorcer la bombe",
@@ -131,7 +132,7 @@ class HouseScene extends Phaser.Scene {
 
         if (distance < interactionDistance) {
           sessionStorage.setItem(`${this.houseName}_item_found`, true);
-          this.showDialogue(chestsDialogue);
+          showDialogue(this, chestsDialogue, "chest");
         }
       }
 
@@ -203,31 +204,6 @@ class HouseScene extends Phaser.Scene {
         player.anims.currentAnim.resume();
       }
     }
-  }
-
-  showDialogue(dialogueArray) {
-    let currentDialogueIndex = this.houseName;
-    let dialogBox = document.createElement("div");
-    dialogBox.className = "dialog-box";
-    dialogBox.textContent = dialogueArray[currentDialogueIndex];
-    document.body.appendChild(dialogBox);
-
-    const handleKeyDown = (event) => {
-      if (event.key === "Enter") {
-        currentDialogueIndex++;
-        if (currentDialogueIndex < dialogueArray.length) {
-          dialogBox.textContent = dialogueArray[currentDialogueIndex];
-        } else {
-          document.removeEventListener("keydown", handleKeyDown); // Remove the event listener
-          if (dialogBox.parentNode === document.body) {
-            document.body.removeChild(dialogBox);
-          }
-          this.isTalking = false;
-        }
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
   }
 }
 
