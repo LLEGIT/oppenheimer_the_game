@@ -9,7 +9,7 @@ class MenuScene extends Phaser.Scene {
   }
 
   create() {
-    const menuTheme = this.sound.add("menu_theme", {loop: true});
+    const menuTheme = this.sound.add("menu_theme", { loop: true });
     menuTheme.play();
 
     const { width: canvasWidth, height: canvasHeight } = this.cameras.main;
@@ -33,7 +33,9 @@ class MenuScene extends Phaser.Scene {
     const buttonColor = 0xfa9c1b;
     const buttonText = "Commencer";
 
-    const startButton = this.add.rectangle(centerX, centerY, buttonWidth, buttonHeight, buttonColor).setInteractive();
+    const startButton = this.add
+      .rectangle(centerX, centerY, buttonWidth, buttonHeight, buttonColor)
+      .setInteractive();
 
     this.add.text(centerX, centerY, buttonText, style).setOrigin(0.5);
 
