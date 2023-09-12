@@ -58,8 +58,6 @@ class MainScene extends Phaser.Scene {
       this.gameTheme.play();
     }
 
-    this.handleItemsFound();
-
     const itemsList = document.querySelector(".items-list");
     itemsList.style.display = "flex";
 
@@ -406,28 +404,6 @@ class MainScene extends Phaser.Scene {
     allCharacters.forEach((character) => {
       character.update();
     });
-  }
-
-  handleItemsFound() {
-    const items = document.querySelectorAll(".items-list .item");
-
-    let i = 0;
-
-    for (const item of items) {
-      if (sessionStorage.getItem(item.id + "_item_found")) {
-        item.style.textDecoration = "line-through";
-        i++;
-      }
-    }
-
-    if (i === 8) {
-      this.endGame();
-    }
-  }
-
-  endGame() {
-    this.scene.stop("MainScene");
-    this.scene.start("EndScene");
   }
 }
 

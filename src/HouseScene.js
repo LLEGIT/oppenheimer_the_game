@@ -132,6 +132,7 @@ class HouseScene extends Phaser.Scene {
 
         if (distance < interactionDistance) {
           sessionStorage.setItem(`${this.houseName}_item_found`, true);
+          this.handleItemsFound();
           showDialogue(this, chestsDialogue, "chest");
         }
       }
@@ -204,6 +205,28 @@ class HouseScene extends Phaser.Scene {
         player.anims.currentAnim.resume();
       }
     }
+  }
+
+  handleItemsFound() {
+    const items = document.querySelectorAll(".items-list .item");
+
+    let i = 0;
+
+    for (const item of items) {
+      if (sessionStorage.getItem(item.id + "_item_found")) {
+        item.style.textDecoration = "line-through";
+        i++;
+      }
+    }
+
+    if (i === 8) {
+      this.endGame();
+    }
+  }
+
+  endGame() {
+    this.scene.stop("HouseScene");
+    this.scene.start("EndScene");
   }
 }
 
