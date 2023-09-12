@@ -119,7 +119,7 @@ class HouseScene extends Phaser.Scene {
         !sessionStorage.getItem(`${this.houseName}_item_found`) &&
         Phaser.Input.Keyboard.JustDown(
           this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E)
-        )
+        ) && this.chestObject
       ) {
         const interactionDistance = 50;
         const distance = Phaser.Math.Distance.Between(
