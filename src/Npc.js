@@ -1,3 +1,4 @@
+import { npcDialogues } from "./npcDialogues.js";
 import { showDialogue } from "./utils.js";
 
 class Npc extends Phaser.Physics.Arcade.Sprite {
@@ -81,63 +82,14 @@ class Npc extends Phaser.Physics.Arcade.Sprite {
     if (!this.isTalking) {
       this.stop();
       this.isTalking = true;
-
-      // Vérifiez quel NPC est en train d'interagir (en fonction de la texture par exemple)
-      if (this.texture.key === "guard") {
-        showDialogue(
-          this,
-          [
-            ["Bienvenue à Los Alamos, étranger."],
-            ["Vous avez des affaires ici ?"],
-          ],
-          "npc"
-        );
-      } else if (this.texture.key === "colonel") {
-        showDialogue(
-          this,
-          [
-            "Bienvenue à Los Alamos, jeune recrue. Nous sommes en train de réaliser quelque chose d'incroyable ici.",
-            "Le projet Manhattan vise à développer la première bombe atomique. La puissance de l'atome entre nos mains.",
-            "Nous avons rassemblé certaines des plus grandes intelligences scientifiques du monde pour ce projet.",
-            "Mais n'oublions pas les implications éthiques et morales de ce que nous créons ici.",
-            "Le célèbre physicien Robert Oppenheimer dirige cette opération. Il a une vision radicale pour l'avenir.",
-            "Soyez prudent lorsque vous parlez de nos travaux ici. La sécurité et le secret sont primordiaux.",
-            "N'ayez pas peur de poser des questions et d'apprendre. Vous faites maintenant partie de l'histoire.",
-          ],
-          "npc"
-        );
-      } else if (this.texture.key === "femme1") {
-        showDialogue(
-          this,
-          [
-            ["Bienvenue dans notre laboratoire de pointe !"],
-            ["Nous travaillons sur des expériences passionnantes ici."],
-          ],
-          "npc"
-        );
-      } else if (this.texture.key === "scientifique1") {
-        showDialogue(
-          this,
-          [
-            ["Oh bonjour, comment ça va ?"],
-            ["J'espère que vous profitez de votre séjour à Los Alamos."],
-          ],
-          "npc"
-        );
-      } else if (this.texture.key === "scientifique2") {
-        showDialogue(
-          this,
-          [
-            ["Ah, vous avez entendu parler du projet Manhattan ?"],
-            [
-              "C'est un projet secret pour développer la première bombe atomique.",
-            ],
-            [
-              "Certains pensent que c'est dangereux, d'autres disent que c'est nécessaire.",
-            ],
-          ],
-          "npc"
-        );
+  
+      // Get the current NPC's texture key
+      const npcTextureKey = this.texture.key;
+  
+      // Check if the NPC texture key exists in the mapping
+      if (npcDialogues.hasOwnProperty(npcTextureKey)) {
+        // Show the dialogue for the current NPC
+        showDialogue(this, npcDialogues[npcTextureKey], "npc");
       }
     }
   }

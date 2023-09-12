@@ -38,6 +38,10 @@ class MainScene extends Phaser.Scene {
       frameWidth: 64,
       frameHeight: 64,
     });
+    this.load.spritesheet("indian", "assets/sprites/indian.png", {
+      frameWidth: 64,
+      frameHeight: 64,
+    });
   }
 
   create() {
@@ -45,7 +49,7 @@ class MainScene extends Phaser.Scene {
       loop: true,
       volume: 0.3,
     });
-    
+
     if (this.gameTheme) {
       this.gameTheme.resume();
     } else {
@@ -74,7 +78,7 @@ class MainScene extends Phaser.Scene {
     this.scale.resize(window.innerWidth, window.innerHeight);
 
     // Create the player as a sprite
-    this.player = this.physics.add.sprite(1200, 800, "player");
+    this.player = this.physics.add.sprite(25, 25, "player");
     this.player.body.setSize(hitboxWidth, hitboxHeight);
 
     if (
@@ -116,6 +120,7 @@ class MainScene extends Phaser.Scene {
       "guard3",
       "guard4",
       "guard5",
+      "indian",
     ];
 
     const animOffsets = {
@@ -155,11 +160,20 @@ class MainScene extends Phaser.Scene {
         { x: 720, y: 432 },
         { x: 930, y: 432 },
       ],
+      // Guards don't move
       [{ x: 288, y: 528 }],
       [{ x: 224, y: 112 }],
       [{ x: 352, y: 1072 }],
       [{ x: 1245, y: 96 }],
       [{ x: 2336, y: 320 }],
+      // Indian
+      [
+        { x: 25, y: 25 },
+        { x: 50, y: 100 },
+        { x: 100, y: 100 },
+        { x: 75, y: 50 },
+        { x: 25, y: 25 },
+      ],
     ];
 
     this.charactersGroup = this.add.group();
@@ -385,6 +399,7 @@ class MainScene extends Phaser.Scene {
       this.character7,
       this.character8,
       this.character9,
+      this.character10
     ];
 
     allCharacters.forEach((character) => {
