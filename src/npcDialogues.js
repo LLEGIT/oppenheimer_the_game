@@ -1,9 +1,5 @@
 // Define a mapping of NPC textures to dialogues
 export const npcDialogues = {
-  guard: [
-    ["Bienvenue à Los Alamos, étranger."],
-    ["Vous avez des affaires ici ?"],
-  ],
   colonel: [
     [
       "Bienvenue à Los Alamos, jeune recrue. Nous sommes en train de réaliser quelque chose d'incroyable ici.",
@@ -41,6 +37,26 @@ export const npcDialogues = {
     [
       "Certains pensent que c'est dangereux, d'autres disent que c'est nécessaire.",
     ],
+  ],
+  guard1: [
+    ["Bienvenue à Los Alamos, étranger."],
+    ["Vous avez des affaires ici ?"],
+  ],
+  guard2: [
+    ["Bienvenue à Los Alamos, étranger."],
+    ["Vous avez des affaires ici ?"],
+  ],
+  guard3: [
+    ["Bienvenue à Los Alamos, étranger."],
+    ["Vous avez des affaires ici ?"],
+  ],
+  guard4: [
+    ["Bienvenue à Los Alamos, étranger."],
+    ["Vous avez des affaires ici ?"],
+  ],
+  guard5: [
+    ["Bienvenue à Los Alamos, étranger."],
+    ["Vous avez des affaires ici ?"],
   ],
   indian: [
     [

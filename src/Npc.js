@@ -2,25 +2,26 @@ import { npcDialogues } from "./npcDialogues.js";
 import { showDialogue } from "./utils.js";
 
 class Npc extends Phaser.Physics.Arcade.Sprite {
-  constructor(scene, x, y, texture, path) {
-    super(scene, x, y, texture);
+  constructor(scene, x, y, name, path) {
+    
+    super(scene, x, y, name);
     scene.physics.world.enable(this);
     scene.add.existing(this);
+    
+    this.npcName = name;
     this.isTalking = false;
     this.path = path;
     this.currentPathIndex = 0;
-    this.npcName = texture;
+    
     this.name = "Npc";
 
-    if (!texture.includes("guard")) {
-      this.animationNames = {
-        walkLeft: `${texture}_walk_left`,
-        walkRight: `${texture}_walk_right`,
-        walkUp: `${texture}_walk_up`,
-        walkDown: `${texture}_walk_down`,
-        walkStay: `${texture}_walk_stay`,
-      };
-    }
+    this.animationNames = {
+      walkLeft: `${name}_walk_left`,
+      walkRight: `${name}_walk_right`,
+      walkUp: `${name}_walk_up`,
+      walkDown: `${name}_walk_down`,
+      walkStay: `${name}_walk_stay`,
+    };
 
     this.body.setSize(5, 5);
 
@@ -29,7 +30,7 @@ class Npc extends Phaser.Physics.Arcade.Sprite {
   }
 
   update() {
-    if (!this.isTalking && !this.npcName.includes("guard")) {
+    if (!this.isTalking) {
       this.followPath();
     }
   }
@@ -64,7 +65,7 @@ class Npc extends Phaser.Physics.Arcade.Sprite {
         targetX,
         targetY
       );
-      if (distance < 5 && !this.npcName.includes("guard")) {
+      if (distance < 5) {
         this.currentPathIndex++; // Passer à la prochaine position du trajet
         if (this.currentPathIndex >= this.path.length) {
           this.currentPathIndex = 0; // Revenir au début du trajet

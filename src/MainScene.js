@@ -35,10 +35,13 @@ class MainScene extends Phaser.Scene {
       frameWidth: 64,
       frameHeight: 64,
     });
-    this.load.spritesheet("guard", "assets/sprites/guard.png", {
-      frameWidth: 64,
-      frameHeight: 64,
-    });
+    for (let i = 1; i < 6; i++) {
+      this.load.spritesheet(`guard${i}`, "assets/sprites/guard.png", {
+        frameWidth: 64,
+        frameHeight: 64,
+      });
+    }
+
     this.load.spritesheet("indian", "assets/sprites/indian.png", {
       frameWidth: 64,
       frameHeight: 64,
@@ -71,7 +74,7 @@ class MainScene extends Phaser.Scene {
     const wallObjects = map.createFromObjects("collisions");
 
     const hitboxWidth = 30;
-    const hitboxHeight = 10;
+    const hitboxHeight = 30;
 
     // Resize the game to fit the screen
     this.scale.resize(window.innerWidth, window.innerHeight);
@@ -159,9 +162,12 @@ class MainScene extends Phaser.Scene {
         { x: 720, y: 432 },
         { x: 930, y: 432 },
       ],
-      // Guards don't move
       [{ x: 288, y: 528 }],
-      [{ x: 224, y: 112 }],
+      [
+        { x: 224, y: 112 },
+        { x: 224, y: 312 },
+        { x: 224, y: 112 },
+      ],
       [{ x: 352, y: 1072 }],
       [{ x: 1245, y: 96 }],
       [{ x: 2336, y: 320 }],
@@ -199,14 +205,12 @@ class MainScene extends Phaser.Scene {
     // Create animations dynamically for characters
     this.characters.forEach((character, index) => {
       const walkAnims = ["left", "right", "up", "down", "stay"];
+      
       walkAnims.forEach((direction) => {
-        let key = character.includes("guard") ? "guard" : character;
+        let key = character;
 
-        if (
-          !this.anims.exists(`${key}_walk_${direction}`, index) &&
-          !character.includes("guard")
-        ) {
-          // Check if animation doesn't exist
+        // Check if animation doesn't exist
+        if (!this.anims.exists(`${key}_walk_${direction}`, index)) {
           this.anims.create({
             key: `${key}_walk_${direction}`,
             frames: this.anims.generateFrameNumbers(key, {
@@ -222,37 +226,6 @@ class MainScene extends Phaser.Scene {
         }
       });
     });
-
-    const guardsAnimations = [
-      {
-        key: "character5",
-        frame: 91,
-      },
-      {
-        key: "character6",
-        frame: 14,
-      },
-      {
-        key: "character7",
-        frame: 32,
-      },
-    ];
-
-    guardsAnimations.forEach((animation) => {
-      if (!this.anims.exists(animation.key)) {
-        this.anims.create({
-          key: animation.key,
-          frames: [{ key: "guard", frame: animation.frame }],
-          frameRate: 20,
-        });
-      }
-    });
-
-    this.character5.anims.play("character5", true);
-    this.character6.anims.play("character7", true);
-    this.character7.anims.play("character5", true);
-    this.character8.anims.play("character7", true);
-    this.character9.anims.play("character6", true);
 
     // Add animations for the player outside of the loop
     const playerWalkAnims = ["left", "right", "up", "down", "stay"];
@@ -374,7 +347,7 @@ class MainScene extends Phaser.Scene {
       )
     ) {
       this.charactersGroup.getChildren().forEach((character) => {
-        if (character instanceof Npc || character.isGuard) {
+        if (character instanceof Npc) {
           const distance = Phaser.Math.Distance.Between(
             this.player.x,
             this.player.y,
