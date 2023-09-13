@@ -223,8 +223,6 @@ class MainScene extends Phaser.Scene {
     // Create animations dynamically for characters
     this.characters.forEach((character, index) => {
       const walkAnims = ["left", "right", "up", "down", "stay"];
-
-      console.log(index)
       
       walkAnims.forEach((direction) => {
         let key = character;
