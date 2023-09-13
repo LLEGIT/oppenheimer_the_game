@@ -134,6 +134,7 @@ class MainScene extends Phaser.Scene {
     };
 
     const paths = [
+      // Other npcs
       [
         { x: 720, y: 208 },
         { x: 720, y: 336 },
@@ -162,6 +163,7 @@ class MainScene extends Phaser.Scene {
         { x: 720, y: 432 },
         { x: 930, y: 432 },
       ],
+      // Guards
       [
         { x: 288, y: 528 },
         { x: 128, y: 528 },
@@ -221,20 +223,19 @@ class MainScene extends Phaser.Scene {
     // Create animations dynamically for characters
     this.characters.forEach((character, index) => {
       const walkAnims = ["left", "right", "up", "down", "stay"];
+
+      console.log(index)
       
       walkAnims.forEach((direction) => {
         let key = character;
 
-        // Check if animation doesn't exist
+        // checks if animation doesn't exist
         if (!this.anims.exists(`${key}_walk_${direction}`, index)) {
           this.anims.create({
             key: `${key}_walk_${direction}`,
             frames: this.anims.generateFrameNumbers(key, {
               start: animOffsets[direction],
-              end:
-                index === 4
-                  ? animOffsets[direction]
-                  : animOffsets[direction] + 7,
+              end: animOffsets[direction] + 7,
             }),
             frameRate: 10,
             repeat: -1,

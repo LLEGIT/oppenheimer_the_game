@@ -65,6 +65,7 @@ class Npc extends Phaser.Physics.Arcade.Sprite {
         targetX,
         targetY
       );
+      
       if (distance < 5) {
         this.currentPathIndex++; // Passer à la prochaine position du trajet
         if (this.currentPathIndex >= this.path.length) {
