@@ -49,6 +49,9 @@ class MainScene extends Phaser.Scene {
   }
 
   create() {
+    const controlsHelp = document.querySelector(".controls");
+    controlsHelp.style.display = "flex";
+
     const gameTheme = this.sound.add("game_theme", {
       loop: true,
       volume: 0.3,

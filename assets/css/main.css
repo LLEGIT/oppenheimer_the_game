@@ -3,6 +3,29 @@
     margin: 0;
 }
 
+.controls {
+    background-color: rgb(37, 35, 35);
+    border-radius: 25px;
+    padding: 25px;
+    position: absolute;
+    top: 25;
+    right: 25;
+    display: none;
+    align-items: flex-end;
+    gap: 15px;
+}
+
+.controls .label {
+    text-align: center;
+}
+
+.controls .image-text-container {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #game {
     width: 100%;
     height: 100%;
