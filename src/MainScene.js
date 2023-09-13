@@ -77,7 +77,7 @@ class MainScene extends Phaser.Scene {
     this.scale.resize(window.innerWidth, window.innerHeight);
 
     // Create the player as a sprite
-    this.player = this.physics.add.sprite(25, 25, "player");
+    this.player = this.physics.add.sprite(1040, 500, "player");
     this.player.body.setSize(hitboxWidth, hitboxHeight);
 
     if (
