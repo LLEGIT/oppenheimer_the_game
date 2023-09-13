@@ -7,7 +7,8 @@ const config = {
   type: Phaser.AUTO,
   width: 2400,
   height:1600,
-  scene: [MenuScene, MainScene, HouseScene, EndScene],
+  // scene: [MenuScene, MainScene, HouseScene, EndScene],
+  scene: [MainScene],
   parent: "game",
   fullscreenTarget: "game",
   physics: {
